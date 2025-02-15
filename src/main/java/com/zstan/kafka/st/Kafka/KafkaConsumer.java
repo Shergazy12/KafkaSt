@@ -12,3 +12,4 @@ public class KafkaConsumer {
         System.out.println("Received message" + message);
     }
 }
+

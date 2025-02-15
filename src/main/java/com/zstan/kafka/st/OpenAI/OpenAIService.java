@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
+
 @Service
 public class OpenAIService {
 

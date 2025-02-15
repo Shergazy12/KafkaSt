@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Getter
