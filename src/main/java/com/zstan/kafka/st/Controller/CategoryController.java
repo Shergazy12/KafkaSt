@@ -16,6 +16,12 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @PostMapping
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        Category createdCategory = categoryService.createCategory(category.getName());
+        return ResponseEntity.ok(createdCategory);
+    }
+
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();
@@ -26,12 +32,6 @@ public class CategoryController {
     public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
         Category category = categoryService.getCategoryById(id);
         return ResponseEntity.ok(category);
-    }
-
-    @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        Category createdCategory = categoryService.createCategory(category.getName());
-        return ResponseEntity.ok(createdCategory);
     }
 
     @DeleteMapping("/{id}")

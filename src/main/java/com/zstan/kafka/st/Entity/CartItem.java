@@ -1,7 +1,9 @@
 package com.zstan.kafka.st.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "cart_items")
 public class CartItem {

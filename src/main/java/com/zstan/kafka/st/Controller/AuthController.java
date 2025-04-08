@@ -3,7 +3,6 @@ package com.zstan.kafka.st.Controller;
 import com.zstan.kafka.st.Request.LoginRequest;
 import com.zstan.kafka.st.Request.RegisterRequest;
 import com.zstan.kafka.st.Service.Impl.UserDetailServiceImpl;
-import com.zstan.kafka.st.Service.UserService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,28 +29,6 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     /**
-     * Логин пользователя.
-     *
-     * @param loginRequest JSON с username и password.
-     * @return Успешный логин или ошибка.
-     */
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        // Аутентификация пользователя
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
-
-        // Установка контекста безопасности
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return ResponseEntity.ok("Успешный вход: " + loginRequest.getUsername());
-    }
-
-    /**
      * Регистрация нового пользователя.
      *
      * @param registerRequest JSON с username и password.
@@ -76,6 +53,29 @@ public class AuthController {
 
         return ResponseEntity.ok("Пользователь зарегистрирован: " + registerRequest.getUsername());
     }
+
+    /**
+     * Логин пользователя.
+     *
+     * @param loginRequest JSON с username и password.
+     * @return Успешный логин или ошибка.
+     */
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        // Аутентификация пользователя
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsername(),
+                        loginRequest.getPassword()
+                )
+        );
+
+        // Установка контекста безопасности
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return ResponseEntity.ok("Успешный вход: " + loginRequest.getUsername());
+    }
 }
+
 
 

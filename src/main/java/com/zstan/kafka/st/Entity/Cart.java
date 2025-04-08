@@ -2,10 +2,13 @@ package com.zstan.kafka.st.Entity;
 
 import com.stripe.model.Source;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Data
 @Entity
 @Table(name = "carts")
 public class Cart {

@@ -7,7 +7,6 @@ import com.zstan.kafka.st.Entity.Product;
 import com.zstan.kafka.st.Entity.Restaurant;
 import com.zstan.kafka.st.OpenAI.OpenAIService;
 import com.zstan.kafka.st.Service.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -100,7 +99,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     // Метод обрабатывает текстовые команды от пользователя
     private String handleCommand(String command, Long userId) {
         if (command.equalsIgnoreCase("/start")) {
-            return "👋 Добро пожаловать в GlovoApp!\n" +
+            return "👋 Добро пожаловать в SHAKH_Bot!\n" +
                     "Доступные команды:\n" +
                     "/categories - посмотреть категории\n" +
                     "/restaurants - список ресторанов\n" +

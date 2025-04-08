@@ -1,10 +1,16 @@
 package com.zstan.kafka.st.Request;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+
+@Data
+@AllArgsConstructor
 public class RegisterRequest {
     private String username;
     private String password;
 
-    // Getters и Setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }

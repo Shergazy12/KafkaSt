@@ -4,11 +4,9 @@ package com.zstan.kafka.st.Service.Impl;
 
 import com.zstan.kafka.st.Entity.User;
 import com.zstan.kafka.st.Repository.UserRepository;
-import com.zstan.kafka.st.Service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -30,11 +28,22 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRole().replace("ROLE_", "")) // ROLE_USER -> USER
+                .roles(user.getRole().replace("ROLE_", ""))
                 .build();
     }
 
-    public void createUser(String username, String encode, String user) {
+    public void createUser(String username, String encodedPassword, String role) {
+        // Проверка на существование пользователя
+        if (userRepository.findByUsername(username).isPresent()) {
+            throw new RuntimeException("Пользователь с таким именем уже существует");
+        }
 
+        // Создаем нового пользователя
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(encodedPassword);
+        user.setRole("ROLE_" + role); // Роль с префиксом ROLE_
+
+        userRepository.save(user);
     }
 }
